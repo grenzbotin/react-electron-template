@@ -27,7 +27,7 @@
     },
     "publish": {
       "provider": "github",
-      "repo": "https://github.com/grenzbotin/react-electron-template",
+      "repo": "react-electron-template",
       "owner": "grenzbotin",
       "releaseType": "release"
     },
