@@ -1,26 +1,40 @@
 {
   "name": "react-electron-template",
+  "description": "Electron template",
   "version": "0.0.1",
   "license": "UNLICENSED",
   "private": true,
   "author": "--- <demo@example.com>",
+  "homepage": "./",
+  "main": "public/electron.js",
   "build": {
     "appId": "com.react-electron-template.yourapp",
     "productName": "react-electron-template",
     "mac": {
-      "category": "public.app-category.lifestyle"
-    },
-    "dmg": {
-      "icon": false
+      "category": "public.app-category.developer-tools",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "hardenedRuntime": true,
+      "entitlementsInherit": "build/entitlements.mac.inherit-plist"
     },
     "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "category": "Office"
-    }
+      "target": "AppImage",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "category": "Development"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
+    },
+    "publish": {
+      "provider": "github",
+      "repo": "https://github.com/grenzbotin/react-electron-template",
+      "owner": "grenzbotin",
+      "releaseType": "release"
+    },
+    "dmg": {
+			"icon": false
+		}
   },
-  "description": "Electron template",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -36,8 +50,6 @@
     "web-vitals": "^2.1.3",
     "yarn": "^1.22.17"
   },
-  "homepage": "./",
-  "main": "public/electron.js",
   "scripts": {
     "start": "react-scripts start",
     "start:electron": "BROWSER=none yarn start",
