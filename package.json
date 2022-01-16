@@ -1,7 +1,7 @@
 {
   "name": "react-electron-template",
   "description": "Electron template",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "license": "UNLICENSED",
   "private": true,
   "author": "--- <demo@example.com>",
@@ -32,8 +32,8 @@
       "releaseType": "release"
     },
     "dmg": {
-			"icon": false
-		}
+      "icon": false
+    }
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -62,6 +62,7 @@
     "dev": "concurrently -k \"yarn start:electron\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "build:local": "electron-builder --windows",
+    "release:git": "sh ./git-release.sh",
     "release": "electron-builder --windows --publish always"
   },
   "eslintConfig": {
