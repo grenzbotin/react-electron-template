@@ -9,7 +9,7 @@ gitRelease() {
     git add .
     git commit -m "release version '$REACT_APP_VERSION'"
 
-    git push origin --tags
+    git push --tags
 
     echo '🚀 Pushed new version: '$REACT_APP_VERSION''
 }
