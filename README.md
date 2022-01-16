@@ -92,7 +92,7 @@ The builds are automatically generated via a [github action](https://github.com/
 
 #### Trigger release build
 
-The `git-release` script helps you in preparing for a new release. After running `yarn release:git` it will ask you for the new version, update the package.json and push your branch with a tag to git. This will create new build packages and executables via the github action.
+The `git-release` script helps you in preparing for a new release. After running `yarn release:git` it will ask you for the new version, update the package.json and push your branch with a tag to git. This will create a new build and release via the github action.
 
 #### Local build
 
