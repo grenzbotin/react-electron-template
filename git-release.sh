@@ -6,12 +6,9 @@ gitRelease() {
 
     REACT_APP_VERSION="$(node -p -e "require('./package.json').version")"
 
-    git add .
-    git commit -m "release version '$REACT_APP_VERSION'"
+    git push origin HEAD --tags
 
-    git push --tags
-
-    echo '🚀 Pushed new version: '$REACT_APP_VERSION''
+    echo '🚀 Pushed new tag to trigger build on github: '$REACT_APP_VERSION''
 }
 
 gitRelease
