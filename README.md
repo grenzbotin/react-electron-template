@@ -90,6 +90,10 @@ Generating builds via github action is strongly recommended due to the pain of s
 
 The builds are automatically generated via a [github action](https://github.com/marketplace/actions/electron-builder-action)
 
+#### Trigger release build
+
+The `git-release` script helps you in preparing for a new release. After running `yarn release:git` it will ask you for the new version, update the package.json and push your branch with a tag to git. This will create new build packages and executables via the github action.
+
 #### Local build
 
 You can generate build scripts for all platforms using [electron-builder](https://www.electron.build/). Thus I can not recommend, since the challenges to do so are hard to solve:
