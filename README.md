@@ -2,7 +2,7 @@
 
 ### Content
 
-- proxy setup
+- electronjs ready template with windows build via github actions
 - linter setup (eslint)
 - prettier setup
 - proxy setup (http-proxy-middleware)
@@ -46,6 +46,42 @@ export LIBGL_ALWAYS_INDIRECT=1
 `yarn dev`
 Should open dev console + electron wrapper
 
+## Adapt build information
+
+Build information in `package.json`:
+Find possible categories in [here](https://specifications.freedesktop.org/menu-spec/latest/apa.html#main-category-registry)
+
+```
+"build": {
+    "appId": "com.react-electron-template.yourapp",
+    "productName": "react-electron-template",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "hardenedRuntime": true,
+      "entitlementsInherit": "build/entitlements.mac.inherit-plist"
+    },
+    "linux": {
+      "target": "AppImage",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "category": "Development"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
+    },
+    "publish": {
+      "provider": "github",
+      "repo": "react-electron-template",
+      "owner": "grenzbotin",
+      "releaseType": "release"
+    },
+    "dmg": {
+			"icon": false
+		}
+  },,
+```
+
 ## Generating the builds
 
 #### CI/CD Build
@@ -56,12 +92,15 @@ The builds are automatically generated via a [github action](https://github.com/
 
 #### Local build
 
-`package.json`
-
 You can generate build scripts for all platforms using [electron-builder](https://www.electron.build/). Thus I can not recommend, since the challenges to do so are hard to solve:
 
 - Mac apps can only be built on macOS
-- With release macOS Catalina support for 32-bit apps got dropped what breaks wine that is a needed base for Windows app building..
+- With release macOS Catalina support for 32-bit apps got dropped what breaks wine that is a needed base for Windows app building.
+
+.. what in the end leads to the issue that you best build for the targeted OS on a machine with this OS.
+An alternative could be Docker, but even there are limits in terms of capability.
+
+`package.json`
 
 ```
 {
@@ -70,26 +109,6 @@ You can generate build scripts for all platforms using [electron-builder](https:
   "build:local": "electron-builder --mac --windows --linux",
   "release": "electron-builder --mac --windows --linux --publish always"
 }
-```
-
-Build information in `package.json`:
-Find possible categories in [here](https://specifications.freedesktop.org/menu-spec/latest/apa.html#main-category-registry)
-
-```
-"build": {
-  "appId": "com.react-electron-template.yourapp",
-  "productName": "react-electron-template",
-  "mac": {
-    "category": "public.app-category.lifestyle"
-  },
-  "dmg": {
-    "icon": false
-  },
-  "linux": {
-    "target": ["AppImage"],
-    "category": "Office"
-  }
-},
 ```
 
 #### Docker build
